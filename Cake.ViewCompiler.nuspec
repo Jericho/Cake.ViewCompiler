@@ -14,7 +14,7 @@
     <copyright>Copyright A Chapman 2016 - Icon by Icons8</copyright>
     <tags>Cake build couchdb mycouch</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="7.0.1" />
+      <dependency id="Newtonsoft.Json" version="8.0.3" />
       <dependency id="Cake.Core" version="0.10.1" />
     </dependencies>
   </metadata>
