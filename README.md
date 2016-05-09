@@ -1,5 +1,8 @@
 # Cake.ViewCompiler
 
+![Build Status][vsts-build]
+[![NuGet](https://img.shields.io/nuget/v/Cake.ViewCompiler.svg?maxAge=3600?style=flat-square)](https://www.nuget.org/packages/Cake.ViewCompiler/)
+
 ## Introduction
 
 This simple Cake addin is designed to simplify the build process when using CouchDB views.
@@ -37,3 +40,5 @@ Now, just make sure your Cake script includes that file in the call to `ViewComp
 ## License and Credits
 
 Credit to Icons8 for the icon, to the Cake team for an awesome tool and to the JSON.NET project for the JSON-handling code.
+
+[vsts-build]: https://vs01.visualstudio.com/DefaultCollection/_apis/public/build/definitions/09d675bd-0b92-45dc-8a6c-f8c4976b4ef0/15/badge
