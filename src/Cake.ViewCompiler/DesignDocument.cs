@@ -12,7 +12,7 @@ namespace Cake.ViewCompiler
     public class DesignDocument
     {
         private string _id;
-        public Dictionary<string, string> Views { get; set; }
+        public Dictionary<string, string> Views { get; set; } = new Dictionary<string, string>();
 
         public string Id
         {
