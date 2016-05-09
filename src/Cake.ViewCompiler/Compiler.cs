@@ -14,6 +14,10 @@ namespace Cake.ViewCompiler
         private Compiler(string id)
         {
             this.Id = id;
+            Document = new DesignDocument
+            {
+                Id = id
+            };
         }
 
         private string Id { get; set; }
@@ -23,21 +27,30 @@ namespace Cake.ViewCompiler
             //this.Context = context;
         }
 
-        public DesignDocument FromFiles(IEnumerable<FilePath> files)
+        public Compiler FromFiles(IEnumerable<FilePath> files)
         {
-            var dict = new Dictionary<string, string>();
             foreach (var filePath in files)
             {
                 var s = filePath.GetFilenameWithoutExtension().ToString();
                 //new FileInfo(filePath.FullPath).Name
-                dict.Add(s, File.ReadAllText(filePath.FullPath));
+                Document.Views.Add(s, File.ReadAllText(filePath.FullPath));
             }
-            var doc = new DesignDocument()
-            {
-                Id = Id,
-                Views = dict
-            };
-            return doc;
+            return this;
         }
+
+        public Compiler FromFile(FilePath file)
+        {
+            var s = file.GetFilenameWithoutExtension().ToString();
+            Document.Views.Add(s, File.ReadAllText(file.FullPath));
+            return this;
+        }
+
+        public Compiler WriteToFile(FilePath file)
+        {
+            Document.Create(file);
+            return this;
+        }
+
+        private DesignDocument Document { get; set; }
     }
 }
