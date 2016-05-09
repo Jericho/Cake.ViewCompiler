@@ -45,9 +45,12 @@ namespace Cake.ViewCompiler
             var viewObj = new JObject();
             foreach (var view in Views)
             {
-                viewObj.Add(view.Key, new JObject("map", view.Value));
+                var mapObj = new JObject();
+                mapObj.Add("map", view.Value);
+                viewObj.Add(view.Key, mapObj);
             }
-            j.Add("views", viewObj);
+            var viewsProp = new JProperty("views", viewObj);
+            j.Add(viewsProp);
             j.Add("language", Language);
             return j.ToString();
         }

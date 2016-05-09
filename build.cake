@@ -27,7 +27,9 @@ Setup(() =>
 {
     // Executed BEFORE the first task.
     Information("Running tasks...");
-	versionInfo = GitVersion();
+	versionInfo = GitVersion(new GitVersionSettings {
+        UpdateAssemblyInfo = true
+    });
 	Information("Building for version {0}", versionInfo.FullSemVer);
 });
 
@@ -84,7 +86,7 @@ Task("Copy-Files")
     CreateDirectory(artifacts + "build");
 	foreach (var project in projects) {
 		CreateDirectory(artifacts + "build/" + project.Name);
-		var files = GetFiles(project.Path.GetDirectory() +"/bin/" +configuration +"/" +project.Name +".*");
+		var files = GetFiles(project.Path.GetDirectory() +"/bin/" +configuration +"/" + "*.dll");
 		CopyFiles(files, artifacts + "build/" + project.Name);
 	}
 });
@@ -92,13 +94,18 @@ Task("Copy-Files")
 Task("NuGet")
     .IsDependentOn("Copy-Files")
     .Does(() => {
-		CreateDirectory(artifact + "package/");
+		CreateDirectory(artifacts + "package/");
         Information("Building NuGet package");
         var nuspecFiles = GetFiles("./**/*.nuspec");
         NuGetPack(nuspecFiles, new NuGetPackSettings() {
-			Version = versionInfo.NuGetVersionV2
-			});
-        MoveFiles("./**/*DocCreator.*.nupkg", artifact + "/package/");
+			Version = versionInfo.NuGetVersionV2,
+            Files = new [] {
+                new NuSpecContent { Source = "Cake.ViewCompiler/Cake.ViewCompiler.dll", Target = "lib/net45"}
+            },
+            BasePath = artifacts + "build",
+            OutputDirectory = artifacts + "package"
+        });
+        //MoveFiles("./**/*DocCreator.*.nupkg", artifacts + "/package/");
     });
 
 ///////////////////////////////////////////////////////////////////////////////

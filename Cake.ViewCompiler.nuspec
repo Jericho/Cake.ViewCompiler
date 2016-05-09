@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Cake.ViewCompiler</id>
+    <title>Cake CouchDB View Compiler</title>
+    <authors>Alistair Chapman</authors>
+    <owners>achapman</owners>
+    <licenseUrl>https://github.com/agc93/Cake.ViewCompiler/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/agc93/Cake.ViewCompiler/</projectUrl>
+    <iconUrl>https://maxcdn.icons8.com/windows10/PNG/96/Household/sofa-96.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple Cake addin to compile CouchDB views from a set of .js files.</description>
+    <releaseNotes>Initial package release</releaseNotes>
+    <copyright>Copyright A Chapman 2016 - Icon by Icons8</copyright>
+    <tags>Cake build couchdb mycouch</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
+      <dependency id="Cake.Core" version="0.10.1" />
+    </dependencies>
+  </metadata>
+</package>
